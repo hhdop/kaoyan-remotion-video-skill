@@ -4,6 +4,8 @@
 
 它沉淀了一个音频优先的视频生产流程：从口播音频、文稿时间线、Remotion 动画排版、审片返修，到 720p 预览和 4K 导出。
 
+新手请先看：[使用文档](USER_GUIDE.md)
+
 ## What It Includes
 
 - `kaoyan-remotion-video/`：可安装的 Codex skill。
