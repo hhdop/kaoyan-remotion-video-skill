@@ -1,0 +1,20 @@
+{
+  "scripts": {
+    "dev": "remotion studio src/index.ts --port 3010 --host 0.0.0.0",
+    "preview": "remotion studio src/index.ts --port 3010 --host 0.0.0.0",
+    "render": "remotion render src/index.ts Main out/408-progress-check.mp4 --codec h264 --image-format jpeg --jpeg-quality 90",
+    "render:4k": "remotion render src/index.ts Main4K out/408-progress-check-4k.mp4 --codec h264 --image-format png --crf 12"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.484",
+    "@remotion/media-utils": "4.0.484",
+    "react": "19.2.7",
+    "react-dom": "19.2.7",
+    "remotion": "4.0.484",
+    "typescript": "6.0.3"
+  },
+  "devDependencies": {
+    "@types/react": "19.2.17",
+    "@types/react-dom": "19.2.3"
+  }
+}
