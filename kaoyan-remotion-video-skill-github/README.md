@@ -11,6 +11,7 @@
 - `kaoyan-remotion-video/`：可安装的 Codex skill。
 - `references/style-and-motion.md`：考研类知识讲解视频的视觉与动效标准。
 - `references/review-workflow.md`：五角色审片、评分、P0/P1/P2 返修机制。
+- 交付前质量门禁：完成前统一检查需求、路径、预览/渲染证据、遗留风险，保证提效的同时质量不下降。
 - `references/remotion-implementation.md`：Remotion 项目结构、时间轴、渲染与验收规则。
 - `references/iteration-notes.md`：真实制作过程中的迭代经验，包含 408 暑期进度自查示例沉淀；408 只是示例，不代表 Skill 只服务 408。
 - `assets/remotion-template/`：不含真实音频和渲染产物的通用 Remotion 模板。
@@ -89,6 +90,7 @@ powershell -ExecutionPolicy Bypass -File kaoyan-remotion-video\scripts\scaffold-
 - 默认风格是专业、清楚、可信、年轻化的教育知识账号风格。
 - 先 720p 预览，再 4K 成片。
 - 每次返修都要沉淀成可复用规则。
+- 每次交付前都要跑一遍质量门禁：确认需求没漏、输出可打开、验证有证据、风险说清楚。
 - 动效服务理解，不堆无意义特效。
 
 ## Accuracy Note

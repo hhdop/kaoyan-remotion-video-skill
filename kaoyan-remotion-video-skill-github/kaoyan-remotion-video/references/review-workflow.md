@@ -2,13 +2,14 @@
 
 Use this workflow for iterative optimization and publication readiness.
 
-## Five Review Roles
+## Six Review Roles
 
 1. Director: decide whether the video is publishable, resolve conflicting feedback, and rank repairs.
 2. Audio-timing reviewer: verify duration, scene timing, caption policy, cue alignment, and whether visuals follow voiceover rhythm.
 3. Visual design reviewer: judge hierarchy, palette, spacing, consistency, and whether the work avoids cheap PPT feeling.
 4. Motion reviewer: judge stiffness, transition variety, anticipation, settle, rhythm, and whether motion helps understanding.
 5. Technical reviewer: verify Remotion build/render, asset paths, no flicker, no overflow, no white/black frames, and correct final output.
+6. User-view reviewer: watch as a first-time kaoyan student, flag anything that looks like editor residue, unfinished placeholders, confusing shorthand, a type mismatch such as news feeling like a planning-progress video, or a visual that can be misread before the script explains it.
 
 ## Scoring
 
@@ -18,7 +19,7 @@ Use 100 points:
 - Visual design: 25
 - Motion rhythm: 25
 - Technical stability: 10
-- Content expression: 10
+- Content expression and user clarity: 10
 
 ## Issue Priority
 
@@ -38,6 +39,9 @@ P1 should fix:
 - Over-repeated transitions.
 - Weak information hierarchy.
 - Awkward stage rhythm.
+- Content-type mismatch, such as using route/checklist/progress grammar for a news-style information update where headline/source/fact/impact grammar would be clearer.
+- Visuals that look like selection boxes, empty placeholders, debug overlays, or accidental editing artifacts.
+- Shorthand labels that can combine into misleading phrases such as "调408" when a full phrase is needed.
 
 P2 optional:
 
@@ -62,3 +66,5 @@ When a user reports a problem, repair both the current video and the reusable st
 - Flickering text means update style rules to avoid small-text hard shadows.
 - Confusing export means update output contract and render naming.
 - Stiff transitions means update motion principles and helper patterns.
+- A user asking whether a selected region is wrong means add a user-view review pass and repair both the ambiguous local visual and the general rule that allowed it.
+- A user says a style fits progress/planning but not news means record a content-type motion-fit rule and redesign future news videos around headline, source, fact, impact, and action beats.

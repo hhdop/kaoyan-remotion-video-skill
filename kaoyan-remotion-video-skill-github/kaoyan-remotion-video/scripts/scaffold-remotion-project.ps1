@@ -22,4 +22,5 @@ $publicDir = Join-Path $OutputDir "public"
 New-Item -ItemType Directory -Force -Path $publicDir | Out-Null
 
 Write-Output "Created Remotion template project: $OutputDir"
-Write-Output "Next: put voice.mp3 into $publicDir, then run pnpm install and pnpm run dev."
+Write-Output "Next: put voice.mp3 and script.srt into $publicDir."
+Write-Output "Then run scripts\generate-remotion-content.ps1 from the skill directory before preflight/rendering."

@@ -2,11 +2,8 @@ param(
   [Parameter(Mandatory=$true)]
   [string]$ProjectDir,
 
-  [ValidateSet("preview", "4k")]
-  [string]$Mode = "preview",
-
-  [string]$OutputPath = "",
-  [string]$PnpmPath = "",
+  [int]$Port = 3010,
+  [string]$HostName = "127.0.0.1",
   [string]$NodePath = "",
   [switch]$SkipInstall
 )
@@ -47,21 +44,17 @@ if (-not $NodePath -or -not (Test-Path -LiteralPath $NodePath)) {
   throw "Node was not found. Install Node.js or run inside a Codex runtime that provides Node."
 }
 
-if (-not $PnpmPath) { $PnpmPath = Find-OnPath @("pnpm.cmd", "pnpm") }
-if (-not $PnpmPath) { $PnpmPath = Find-CodexRuntimeTool "pnpm.cmd" }
-if (-not $PnpmPath -or -not (Test-Path -LiteralPath $PnpmPath)) {
-  throw "pnpm was not found. Install pnpm or enable Corepack."
-}
+$pnpmPath = Find-OnPath @("pnpm.cmd", "pnpm")
+if (-not $pnpmPath) { $pnpmPath = Find-CodexRuntimeTool "pnpm.cmd" }
 
 $env:Path = "$(Split-Path -Parent $NodePath);$env:Path"
 
 Push-Location -LiteralPath $ProjectDir
 try {
   if (-not $SkipInstall -and -not (Test-Path -LiteralPath (Join-Path $ProjectDir "node_modules"))) {
-    & $PnpmPath install --frozen-lockfile
-    if ($LASTEXITCODE -ne 0) {
-      throw "pnpm install failed with exit code $LASTEXITCODE"
-    }
+    if (-not $pnpmPath) { throw "pnpm was not found. Install pnpm or enable Corepack." }
+    & $pnpmPath install --frozen-lockfile
+    if ($LASTEXITCODE -ne 0) { throw "pnpm install failed with exit code $LASTEXITCODE" }
   }
 
   $cliPath = Join-Path $ProjectDir "node_modules\@remotion\cli\remotion-cli.js"
@@ -69,28 +62,9 @@ try {
     throw "Remotion CLI not found. Run pnpm install first: $cliPath"
   }
 
-  $outDir = Join-Path $ProjectDir "out"
-  New-Item -ItemType Directory -Force -Path $outDir | Out-Null
-
-  $composition = if ($Mode -eq "4k") { "Main4K" } else { "Main" }
-  if (-not $OutputPath) {
-    $fileName = if ($Mode -eq "4k") { "408-progress-check-4k.mp4" } else { "408-progress-check.mp4" }
-    $OutputPath = Join-Path $outDir $fileName
-  }
-
-  $renderArgs = @("render", "src/index.ts", $composition, $OutputPath, "--codec", "h264")
-  if ($Mode -eq "4k") {
-    $renderArgs += @("--image-format", "png", "--crf", "12")
-  } else {
-    $renderArgs += @("--image-format", "jpeg", "--jpeg-quality", "90")
-  }
-
-  & $NodePath $cliPath @renderArgs
-  if ($LASTEXITCODE -ne 0) {
-    throw "Render failed with exit code $LASTEXITCODE"
-  }
-
-  Write-Output "Rendered $Mode video: $OutputPath"
+  Write-Output "Starting Remotion Studio at http://localhost:$Port"
+  Write-Output "Keep this process running while previewing in the browser."
+  & $NodePath $cliPath studio src/index.ts --port $Port --host $HostName
 } finally {
   Pop-Location
 }
