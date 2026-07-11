@@ -1,5 +1,0 @@
-interface:
-  display_name: "Kaoyan Video"
-  short_description: "Audio-first CS kaoyan video production workflow"
-  brand_color: "#263648"
-  default_prompt: "Use $kaoyan-remotion-video to turn my voiceover and script into a polished computer-postgraduate-exam knowledge video."
