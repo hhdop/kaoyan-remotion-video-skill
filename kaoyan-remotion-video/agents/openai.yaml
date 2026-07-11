@@ -1,0 +1,5 @@
+interface:
+  display_name: "Kaoyan Remotion Video"
+  short_description: "Windows audio-first kaoyan video workflow"
+  brand_color: "#263648"
+  default_prompt: "Use $kaoyan-remotion-video to check the Windows environment, classify my voiceover and SRT, open a Remotion preview, render a verified 720p draft, and wait for approval before 4K."
